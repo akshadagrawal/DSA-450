@@ -1,4 +1,4 @@
-// find minimum and maximum in an array
+// find minimum and maximum in an array using divide and conquer
 
 #include<bits/stdc++.h>
 using namespace std;
