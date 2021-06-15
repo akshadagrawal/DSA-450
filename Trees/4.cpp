@@ -1,4 +1,4 @@
-//print level order
+//find diameter of tree
 #include<bits/stdc++.h>
 using namespace std;
 class Node{
@@ -18,14 +18,16 @@ class Node{
 class Tree {
     Node * root;
     void printTree(Node* );
+    int height(Node * root);
+    int diameter(Node* root);
     public: 
         Tree(){
             root = NULL;
         }
         void makeTree();
         Node* createTree();
-        void printTree(); 
-        void levelOrder();       
+        void printTree();  
+        int diameter();      
 };
 Node* Tree::createTree(){
     int x;
@@ -55,17 +57,18 @@ void Tree::makeTree(){
     root->left->right= new Node(5);
     root->right->left= new Node(6);
 }
-void Tree::levelOrder(){
-    queue <Node* > q;
-    q.push(root);
-    while(!q.empty()){
-        Node* p = q.front();
-        q.pop();
-        cout<<p->data<<" ";
-        if(p->left) q.push(p->left);
-        if(p->right) q.push(p->right);
-    }
+int Tree:: diameter(){
+    return diameter(root);
 }
+int Tree:: height(Node* root){
+        if(root == NULL) return 0;
+        return 1 + max(height(root->left), height(root->right));
+ }
+ int Tree:: diameter(Node* root) {
+        if(root==NULL ) return 0;
+        //cout<<root->data<<" "<<leftMax(root)+ rightMax(root)-1<<endl;
+        return max(height(root->left) + height(root->right) +1, max(diameter(root->left), diameter(root->right)));
+    }
 int main(){
     Tree t;
     /*
@@ -74,6 +77,7 @@ int main(){
           4   5   6  
     */
     t.makeTree();
-    //t.printTree();
-    t.levelOrder();
+    //t.createTree();
+    t.printTree();
+    cout<<endl<<t.diameter();
 }

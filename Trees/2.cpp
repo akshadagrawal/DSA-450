@@ -1,3 +1,5 @@
+//Reverse Level Order
+
 //print level order
 #include<bits/stdc++.h>
 using namespace std;
@@ -25,7 +27,7 @@ class Tree {
         void makeTree();
         Node* createTree();
         void printTree(); 
-        void levelOrder();       
+        void reverselevelOrder();       
 };
 Node* Tree::createTree(){
     int x;
@@ -55,16 +57,19 @@ void Tree::makeTree(){
     root->left->right= new Node(5);
     root->right->left= new Node(6);
 }
-void Tree::levelOrder(){
-    queue <Node* > q;
+void Tree::reverselevelOrder(){
+    vector<int> h;
+    queue<Node*> q;
     q.push(root);
     while(!q.empty()){
-        Node* p = q.front();
+        Node* p= q.front();
         q.pop();
-        cout<<p->data<<" ";
-        if(p->left) q.push(p->left);
+        h.push_back(p->data);
         if(p->right) q.push(p->right);
+        if(p->left) q.push(p->left);
     }
+    reverse(h.begin(), h.end());
+    for(auto x : h) cout<<x<<" ";
 }
 int main(){
     Tree t;
@@ -75,5 +80,5 @@ int main(){
     */
     t.makeTree();
     //t.printTree();
-    t.levelOrder();
+    t.reverselevelOrder();
 }

@@ -1,4 +1,4 @@
-//print level order
+//Create and print simple binary tree
 #include<bits/stdc++.h>
 using namespace std;
 class Node{
@@ -24,8 +24,7 @@ class Tree {
         }
         void makeTree();
         Node* createTree();
-        void printTree(); 
-        void levelOrder();       
+        void printTree();        
 };
 Node* Tree::createTree(){
     int x;
@@ -55,17 +54,6 @@ void Tree::makeTree(){
     root->left->right= new Node(5);
     root->right->left= new Node(6);
 }
-void Tree::levelOrder(){
-    queue <Node* > q;
-    q.push(root);
-    while(!q.empty()){
-        Node* p = q.front();
-        q.pop();
-        cout<<p->data<<" ";
-        if(p->left) q.push(p->left);
-        if(p->right) q.push(p->right);
-    }
-}
 int main(){
     Tree t;
     /*
@@ -74,6 +62,6 @@ int main(){
           4   5   6  
     */
     t.makeTree();
-    //t.printTree();
-    t.levelOrder();
+    //t.createTree();
+    t.printTree();
 }

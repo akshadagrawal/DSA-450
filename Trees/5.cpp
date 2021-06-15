@@ -1,4 +1,4 @@
-//print level order
+//Mirror of a tree
 #include<bits/stdc++.h>
 using namespace std;
 class Node{
@@ -24,8 +24,8 @@ class Tree {
         }
         void makeTree();
         Node* createTree();
-        void printTree(); 
-        void levelOrder();       
+        void printTree();
+        void mirrorTree();        
 };
 Node* Tree::createTree(){
     int x;
@@ -55,15 +55,36 @@ void Tree::makeTree(){
     root->left->right= new Node(5);
     root->right->left= new Node(6);
 }
-void Tree::levelOrder(){
-    queue <Node* > q;
+void Tree:: mirrorTree(){
+    queue<Node*> q;
     q.push(root);
     while(!q.empty()){
-        Node* p = q.front();
+        Node* p= q.front();
         q.pop();
-        cout<<p->data<<" ";
+        Node* temp = p->left;
+        p->left= p->right;
+        p->right= temp;
+
         if(p->left) q.push(p->left);
         if(p->right) q.push(p->right);
+
+
+        /* Alternate Solution
+        
+             // Base Case
+            if (root == NULL)
+                return root;
+            node* t = root->left;
+            root->left = root->right;
+            root->right = t;
+        
+            if (root->left)
+                mirrorTree(root->left);
+            if (root->right)
+                mirrorTree(root->right);
+        
+            return root;
+        */
     }
 }
 int main(){
@@ -74,6 +95,7 @@ int main(){
           4   5   6  
     */
     t.makeTree();
-    //t.printTree();
-    t.levelOrder();
+    //t.createTree();
+    t.mirrorTree();
+    t.printTree();
 }

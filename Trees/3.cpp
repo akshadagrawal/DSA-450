@@ -1,4 +1,4 @@
-//print level order
+//height of a tree
 #include<bits/stdc++.h>
 using namespace std;
 class Node{
@@ -18,14 +18,17 @@ class Node{
 class Tree {
     Node * root;
     void printTree(Node* );
+    int lengthTree( Node* root);
+    int lengthTreeRec( Node* root);
+
     public: 
         Tree(){
             root = NULL;
         }
         void makeTree();
         Node* createTree();
-        void printTree(); 
-        void levelOrder();       
+        void printTree();
+        int lengthTree();       
 };
 Node* Tree::createTree(){
     int x;
@@ -55,16 +58,29 @@ void Tree::makeTree(){
     root->left->right= new Node(5);
     root->right->left= new Node(6);
 }
-void Tree::levelOrder(){
-    queue <Node* > q;
+int Tree::lengthTree(){
+    // return lengthTree(root);
+    return lengthTreeRec(root);
+}
+int Tree:: lengthTree(Node* root){
+    int len=0;
+    queue<Node*> q;
     q.push(root);
     while(!q.empty()){
-        Node* p = q.front();
-        q.pop();
-        cout<<p->data<<" ";
-        if(p->left) q.push(p->left);
-        if(p->right) q.push(p->right);
+        int n= q.size();
+        for(int i=0;i <n;i++){
+            Node* p= q.front();
+            q.pop();
+            if(p->left) q.push(p->left);
+            if(p->right) q.push(p->right);
+        }
+        len++;
     }
+    return len;
+}
+int Tree:: lengthTreeRec(Node* root){
+    if(root == NULL ) return 0;
+    return 1+ max(lengthTreeRec(root->left), lengthTreeRec(root->right));
 }
 int main(){
     Tree t;
@@ -74,6 +90,7 @@ int main(){
           4   5   6  
     */
     t.makeTree();
-    //t.printTree();
-    t.levelOrder();
+    //t.createTree();
+    t.printTree();
+    cout<<endl<<t.lengthTree();
 }
