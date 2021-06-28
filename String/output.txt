@@ -1,0 +1,13 @@
+MAGIC
+
+B B A B B M 
+C B M B B A 
+I B A B B G 
+G O Z B B I 
+A B B B B C 
+M C I G A M 
+20
+8
+0
+20
+0
