@@ -1,4 +1,4 @@
-//max sum contiguos array
+//max sum contiguos array (kadanes algorithm)
 
 #include<bits/stdc++.h>
 using namespace std;
